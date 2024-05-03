@@ -19,7 +19,9 @@ export function offscreen({ DOMParser: DOMParserFallback }: IConfig = {}) {
     ignoreAnimation: true,
     ignoreMouse: true,
     DOMParser: DOMParserFallback,
-    createCanvas(width: number, height: number) {
+    createCanvas(width: number, height: number): HTMLCanvasElement | OffscreenCanvas & {
+      getContext(contextId: '2d'): OffscreenCanvasRenderingContext2D
+    } {
       return new OffscreenCanvas(width, height)
     },
     async createImage(url: string) {

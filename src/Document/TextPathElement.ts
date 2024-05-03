@@ -345,8 +345,7 @@ export class TextPathElement extends TextElement {
       || thisSpacing.getValue() === 'inherit'
     ) {
       letterSpacing = parentSpacing.getPixels()
-    } else
-    if (thisSpacing.hasValue()) {
+    } else if (thisSpacing.hasValue()) {
       if (thisSpacing.getValue() !== 'initial'
         && thisSpacing.getValue() !== 'unset'
       ) {
@@ -883,8 +882,7 @@ export class TextPathElement extends TextElement {
         x: fromX,
         y: fromY + rise
       }
-    } else
-    if ((fromY - p1y) / ((fromX - p1x) + PSEUDO_ZERO) === m) {
+    } else if ((fromY - p1y) / ((fromX - p1x) + PSEUDO_ZERO) === m) {
       pt = {
         x: fromX + run,
         y: fromY + rise

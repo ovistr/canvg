@@ -70,8 +70,7 @@ export abstract class Element {
     Array.from(node.childNodes).forEach((childNode: HTMLElement) => {
       if (childNode.nodeType === 1) {
         this.addChild(childNode) // ELEMENT_NODE
-      } else
-      if (captureTextNodes && (
+      } else if (captureTextNodes && (
         childNode.nodeType === 3
         || childNode.nodeType === 4
       )) {
@@ -166,8 +165,7 @@ export abstract class Element {
         this.applyEffects(ctx)
         mask.apply(ctx, this)
       }
-    } else
-    if (this.getStyle('filter').getValue('none') !== 'none') { // filter
+    } else if (this.getStyle('filter').getValue('none') !== 'none') { // filter
       const filter = this.getStyle('filter').getDefinition<FilterElement>()
 
       if (filter) {

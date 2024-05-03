@@ -35,11 +35,9 @@ export class FontElement extends Element {
         if (fontFamilyStyle.hasValue()) {
           definitions[fontFamilyStyle.getString()] = this
         }
-      } else
-      if (child instanceof MissingGlyphElement) {
+      } else if (child instanceof MissingGlyphElement) {
         this.missingGlyph = child
-      } else
-      if (child instanceof GlyphElement) {
+      } else if (child instanceof GlyphElement) {
         if (child.arabicForm) {
           this.isRTL = true
           this.isArabic = true

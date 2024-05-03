@@ -20,8 +20,7 @@ export class SVGElement extends RenderedElement {
 
     if ('style' in canvas
       && typeof ctx.font !== 'undefined'
-      && window
-      && typeof window.getComputedStyle !== 'undefined'
+      && typeof window?.getComputedStyle !== 'undefined'
     ) {
       ctx.font = window.getComputedStyle(canvas).getPropertyValue('font')
 

@@ -62,8 +62,7 @@ export class AElement extends TextElement {
           )
         )
       }
-    } else
-    if (this.children.length > 0) {
+    } else if (this.children.length > 0) {
       // render as temporary group
       const g = new GElement(this.document)
 

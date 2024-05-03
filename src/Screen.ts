@@ -265,18 +265,12 @@ export class Screen {
     }
 
     // scale
-    switch (true) {
-      case align === 'none':
-        ctx.scale(scaleX, scaleY)
-        break
-
-      case meetOrSlice === 'meet':
-        ctx.scale(scaleMin, scaleMin)
-        break
-
-      case meetOrSlice === 'slice':
-        ctx.scale(scaleMax, scaleMax)
-        break
+    if (align === 'none') {
+      ctx.scale(scaleX, scaleY)
+    } else if (meetOrSlice === 'meet') {
+      ctx.scale(scaleMin, scaleMin)
+    } else if (meetOrSlice === 'slice') {
+      ctx.scale(scaleMax, scaleMax)
     }
 
     // translate
@@ -482,8 +476,7 @@ export class Screen {
 
         if (widthStyle.hasValue()) {
           xRatio = widthStyle.getPixels('x') / scaleWidth
-        } else
-        if (viewBox[2] && !isNaN(viewBox[2])) {
+        } else if (viewBox[2] && !isNaN(viewBox[2])) {
           xRatio = viewBox[2] / scaleWidth
         }
       }
@@ -493,8 +486,7 @@ export class Screen {
 
         if (heightStyle.hasValue()) {
           yRatio = heightStyle.getPixels('y') / scaleHeight
-        } else
-        if (viewBox[3] && !isNaN(viewBox[3])) {
+        } else if (viewBox[3] && !isNaN(viewBox[3])) {
           yRatio = viewBox[3] / scaleHeight
         }
       }

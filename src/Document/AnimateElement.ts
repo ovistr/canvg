@@ -90,16 +90,14 @@ export class AnimateElement extends Element {
         || this.getAttribute('repeatDur').getString() === 'indefinite'
       ) {
         this.duration = 0
-      } else
-      if (fill === 'freeze' && !this.frozen) {
+      } else if (fill === 'freeze' && !this.frozen) {
         this.frozen = true
 
         if (parent && prop) {
           parent.animationFrozen = true
           parent.animationFrozenValue = prop.getString()
         }
-      } else
-      if (fill === 'remove' && !this.removed) {
+      } else if (fill === 'remove' && !this.removed) {
         this.removed = true
 
         if (parent && prop) {

@@ -21,9 +21,7 @@ export function offscreen({ DOMParser: DOMParserFallback }: IConfig = {}) {
     ignoreAnimation: true,
     ignoreMouse: true,
     DOMParser: DOMParserFallback,
-    createCanvas: ((width: number, height: number): OffscreenCanvas => {
-      return new OffscreenCanvas(width, height)
-    }) as CreateCanvas,
+    createCanvas: ((width: number, height: number): OffscreenCanvas => new OffscreenCanvas(width, height)) as CreateCanvas,
     async createImage(url: string) {
       const response = await fetch(url)
       const blob = await response.blob()

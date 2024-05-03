@@ -49,7 +49,7 @@ export class FilterElement extends Element {
     const y = Math.floor(boundingBox.y)
     const ignoredStyles = this.removeStyles(element, FilterElement.ignoreStyles)
     const tmpCanvas = document.createCanvas(tmpCanvasWidth, tmpCanvasHeight)
-    const tmpCtx = tmpCanvas.getContext('2d')
+    const tmpCtx = tmpCanvas.getContext('2d') as RenderingContext2D
 
     document.screen.setDefaults(tmpCtx)
     tmpCtx.translate(-x + px, -y + py)

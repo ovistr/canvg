@@ -1,3 +1,5 @@
+import { IOptions } from '../Canvg'
+import { CreateCanvas } from '../Document'
 import { DOMParser } from './types'
 
 interface IConfig {
@@ -14,16 +16,14 @@ interface IConfig {
  * @returns Preset object.
  */
 export function offscreen({ DOMParser: DOMParserFallback }: IConfig = {}) {
-  const preset = {
+  const preset: IOptions = {
     window: null,
     ignoreAnimation: true,
     ignoreMouse: true,
     DOMParser: DOMParserFallback,
-    createCanvas(width: number, height: number): HTMLCanvasElement | OffscreenCanvas & {
-      getContext(contextId: '2d'): OffscreenCanvasRenderingContext2D
-    } {
+    createCanvas: ((width: number, height: number): OffscreenCanvas => {
       return new OffscreenCanvas(width, height)
-    },
+    }) as CreateCanvas,
     async createImage(url: string) {
       const response = await fetch(url)
       const blob = await response.blob()

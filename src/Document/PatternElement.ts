@@ -42,7 +42,7 @@ export class PatternElement extends Element {
     patternSvg.children = this.children
 
     const patternCanvas = this.document.createCanvas(width, height)
-    const patternCtx = patternCanvas.getContext('2d')
+    const patternCtx = patternCanvas.getContext('2d') as RenderingContext2D
     const xAttr = this.getAttribute('x')
     const yAttr = this.getAttribute('y')
 

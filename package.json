@@ -104,7 +104,7 @@
     "@types/puppeteer": "^5.4.2",
     "@xmldom/xmldom": "^0.8.0",
     "browserslist": "^4.19.1",
-    "canvas": "^2.1.0",
+    "canvas": "^2.11.2",
     "clean-publish": "^4.0.0",
     "commitizen": "^4.2.4",
     "cross-env": "^7.0.0",

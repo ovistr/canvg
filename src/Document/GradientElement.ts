@@ -135,7 +135,7 @@ export abstract class GradientElement extends Element {
       patternSvg.children = [group]
 
       const patternCanvas = document.createCanvas(rootView.width, rootView.height)
-      const patternCtx = patternCanvas.getContext('2d')
+      const patternCtx = patternCanvas.getContext('2d') as RenderingContext2D
 
       patternCtx.fillStyle = gradient
       patternSvg.render(patternCtx)

@@ -116,7 +116,7 @@ export class ImageElement extends RenderedElement {
       }
 
       void subDocument.render()
-    } else {
+    } else if (!(image instanceof VideoFrame)) { // VideoFrame type does not provide width and height
       document.setViewBox({
         ctx,
         aspectRatio: this.getAttribute('preserveAspectRatio').getString(),

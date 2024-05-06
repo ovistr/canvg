@@ -7,7 +7,7 @@ import { ignoreErrors } from '.'
 export function launch() {
   return puppeteer.launch({
     args: [
-      '--no-sandbox ',
+      '--no-sandbox',
       '--disable-setuid-sandbox',
       '--disable-dev-shm-usage',
       '--disable-web-security'
@@ -35,7 +35,7 @@ export async function createPage(browser: Browser) {
 export function onPageError(page: Page, listener: (error: Error) => void) {
   page.on('console', (message) => {
     if (message.type() === 'error'
-      || message.type() === 'warning'
+      || message.type() === 'warn'
     ) {
       const text = message.text()
 

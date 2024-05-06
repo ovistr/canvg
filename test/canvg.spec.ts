@@ -2,7 +2,6 @@ import path from 'path'
 import { promises as fs } from 'fs'
 import { DOMParser } from '@xmldom/xmldom'
 import * as canvas from 'canvas'
-import fetch from 'node-fetch'
 import { Canvg, presets } from '../src'
 
 const preset = presets.node({

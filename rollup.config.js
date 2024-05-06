@@ -1,4 +1,5 @@
-import swc from 'rollup-plugin-swc'
+import { readFileSync } from 'node:fs'
+import swc from '@rollup/plugin-swc'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import commonjs from '@rollup/plugin-commonjs'
@@ -6,8 +7,8 @@ import browsersEsm from '@trigen/browserslist-config/browsers-esm'
 import nodeEsm from '@trigen/browserslist-config/node-esm'
 import browsers from '@trigen/browserslist-config/browsers'
 import node from '@trigen/browserslist-config/node'
-import pkg from './package.json'
 
+const pkg = JSON.parse(readFileSync('./package.json'))
 const extensions = ['.js', '.ts']
 const external = _ => /node_modules/.test(_) && !/@swc\/helpers/.test(_)
 const plugins = targets => [

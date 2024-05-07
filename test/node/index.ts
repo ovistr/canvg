@@ -1,23 +1,46 @@
 /* eslint-disable  */
-import path from 'path'
+import path, { resolve } from 'node:path'
 import {
   promises as fs,
   createReadStream
-} from 'fs'
+} from 'node:fs'
+import { Stream } from 'node:stream'
 import { DOMParser } from '@xmldom/xmldom'
 import * as canvas from 'canvas'
-import fetch, { Response } from 'node-fetch'
 import { Canvg, presets } from '../../src'
+
+const streamToBlob = async (stream: Stream, mimeType: string): Promise<Blob> => {
+  if (mimeType != null && typeof mimeType !== 'string') {
+    throw new Error('Invalid mimetype, expected string.')
+  }
+  return new Promise((resolve, reject) => {
+    const chunks = []
+    stream
+      .on('data', chunk => chunks.push(chunk))
+      .once('end', () => {
+        const blob = mimeType != null
+          ? new Blob(chunks, { type: mimeType })
+          : new Blob(chunks)
+        resolve(blob)
+      })
+      .once('error', reject)
+  })
+}
 
 const preset = presets.node({
   DOMParser,
   canvas,
-  fetch(input) {
+  fetch: async (input) => {
     if (typeof input === 'string' && !input.startsWith('http')) {
       const stream = createReadStream(
-        path.join(__dirname, '..', 'svgs', input)
+        resolve(__dirname, '..', 'svgs', input)
       )
-      const response = new Response(stream)
+      const blob = await streamToBlob(stream, 'image/svg+xml');
+      const response = new Response(blob, {
+        headers: {
+          'Content-Type': 'image/svg+xml'
+        }
+      })
 
       return Promise.resolve(response)
     }

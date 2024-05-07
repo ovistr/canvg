@@ -1,7 +1,8 @@
 import requestAnimationFrame from 'raf'
 import {
   RenderingContext2D,
-  Fetch
+  Fetch,
+  NodeCanvasRenderingContext2D
 } from './types'
 import {
   compressSpaces,
@@ -114,7 +115,7 @@ export class Screen {
   private intervalId: number | null = null
 
   constructor(
-    readonly ctx: RenderingContext2D,
+    readonly ctx: NodeCanvasRenderingContext2D,
     {
       fetch = defaultFetch,
       window = defaultWindow
@@ -512,7 +513,7 @@ export class Screen {
       ctx.clearRect(0, 0, cWidth, cHeight)
     }
 
-    element.render(ctx)
+    element.render(ctx as RenderingContext2D)
 
     if (isFirstRender) {
       this.isFirstRender = false

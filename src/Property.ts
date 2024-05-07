@@ -11,6 +11,7 @@ import {
   PatternElement,
   GradientElement
 } from './Document'
+import { RenderingContext2D } from './types'
 
 export class Property<T = unknown> {
   static empty(document: Document) {
@@ -300,7 +301,7 @@ export class Property<T = unknown> {
     // gradient
     if (typeof def.createGradient === 'function' && 'getBoundingBox' in element) {
       return def.createGradient(
-        this.document.ctx,
+        this.document.ctx as RenderingContext2D,
         element,
         opacity
       )
@@ -319,7 +320,7 @@ export class Property<T = unknown> {
       }
 
       if (def) {
-        return def.createPattern(this.document.ctx, element, opacity)
+        return def.createPattern(this.document.ctx as RenderingContext2D, element, opacity)
       }
     }
 

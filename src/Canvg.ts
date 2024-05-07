@@ -1,4 +1,4 @@
-import { RenderingContext2D } from './types'
+import { NodeCanvasRenderingContext2D, RenderingContext2D } from './types'
 import { IParserOptions, Parser } from './Parser'
 import {
   IScreenOptions,
@@ -48,7 +48,7 @@ export class Canvg {
    * @returns Canvg instance.
    */
   static fromString(
-    ctx: RenderingContext2D,
+    ctx: NodeCanvasRenderingContext2D,
     svg: string,
     options: IOptions = {}
   ) {
@@ -80,7 +80,7 @@ export class Canvg {
    * @param options - Rendering options.
    */
   constructor(
-    ctx: RenderingContext2D,
+    ctx: NodeCanvasRenderingContext2D,
     svg: DOMDocument,
     options: IOptions = {}
   ) {
